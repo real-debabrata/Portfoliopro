@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "category": "Brand Identity",
+        "title": "Aura Skincare Identity",
+        "description": "Minimalist logo and packaging design for an organic skincare brand focusing on natural beauty.",
+        "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 2,
+        "category": "Brand Identity",
+        "title": "Zenith Coffee Roasters",
+        "description": "Complete brand guideline, stationary, and premium cup designs for a boutique cafe.",
+        "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 3,
+        "category": "Digital UI/UX",
+        "title": "Fintech Dashboard App",
+        "description": "Clean, light-themed user interface and component system for a modern finance tracking app.",
+        "image": "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 4,
+        "category": "Digital UI/UX",
+        "title": "E-Commerce Experience",
+        "description": "Wireframes, prototyping, and high-fidelity mockups for a luxury fashion retailer app.",
+        "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 5,
+        "category": "Print & Editorial",
+        "title": "Architechtura Magazine",
+        "description": "Typography-focused 40-page editorial layout for a quarterly architecture magazine.",
+        "image": "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 6,
+        "category": "Print & Editorial",
+        "title": "SoundWave Poster Series",
+        "description": "A vibrant, 3D and grid-based poster series for a summer electronic music festival.",
+        "image": "https://images.unsplash.com/photo-1557672172-298e090bd0f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    }
+]
