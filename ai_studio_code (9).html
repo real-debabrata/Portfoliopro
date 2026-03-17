@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Graphic Design Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #6366f1;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: var(--bg-color); color: var(--text-main);
+            overflow-x: hidden; scroll-behavior: smooth;
+        }
+
+        .bg-shapes { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -3; overflow: hidden; pointer-events: none; }
+        .shape { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.6; animation: float 20s infinite ease-in-out alternate; }
+        .shape-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #c7d2fe; }
+        .shape-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #fbcfe8; animation-delay: -5s; }
+        .shape-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #e0e7ff; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2; opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none; mix-blend-mode: multiply;
+        }
+
+        .grid-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+            pointer-events: none;
+        }
+
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 5%;
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border); transition: all 0.3s;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+        .nav-links { list-style: none; display: flex; gap: 35px; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; box-shadow: var(--glass-shadow); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 3rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 15px; }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        section { padding: 120px 5% 60px; max-width: 1400px; margin: 0 auto; }
+
+        .btn { display: inline-block; padding: 16px 32px; background: var(--text-main); color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(15, 23, 42, 0.25); background: var(--accent); }
+        .btn:disabled { background: var(--text-muted); cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; }
+        .hero-badge { background: rgba(255, 255, 255, 0.8); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; color: var(--accent); margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--glass-border); }
+        .hero h1 { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 25px; letter-spacing: -2px; }
+        .hero h1 span { color: transparent; background: linear-gradient(120deg, #6366f1, #ec4899); -webkit-background-clip: text; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
+
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; perspective: 1000px; }
+        .info-card { padding: 40px; text-align: center; transform-style: preserve-3d; cursor: pointer; }
+        .info-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; transform: translateZ(30px); }
+        .info-card h3 { font-size: 1.5rem; margin-bottom: 15px; transform: translateZ(20px); }
+        .info-card p { color: var(--text-muted); line-height: 1.6; transform: translateZ(10px); }
+        .resume-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 15px; }
+        .skill-tag { padding: 12px 24px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; transition: transform 0.3s; }
+        .skill-tag:hover { transform: translateY(-5px); }
+        .timeline { border-left: 2px solid rgba(99, 102, 241, 0.2); padding-left: 30px; display: flex; flex-direction: column; gap: 40px; }
+        .timeline-item { position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -39px; top: 0; width: 16px; height: 16px; background: var(--accent); border-radius: 50px; border: 4px solid var(--bg-color); }
+        .timeline-date { font-size: 0.9rem; color: var(--accent); font-weight: 700; margin-bottom: 5px; }
+        .timeline-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; }
+        .timeline-company { font-size: 1rem; color: var(--text-muted); margin-bottom: 10px; }
+
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
+        .card { overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.4s; }
+        .card:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .card-image-wrapper { width: 100%; height: 280px; overflow: hidden; border-bottom: 1px solid var(--glass-border); }
+        .card-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .card:hover .card-image { transform: scale(1.08); }
+        .card-content { padding: 25px; }
+        .card-category { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 700; margin-bottom: 10px; display: block; }
+        .card-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
+        .card-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.6; }
+        h2.category-title { margin: 80px 0 40px; font-size: 2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 15px;}
+
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 60px; }
+        .contact-info h3 { font-size: 2.5rem; margin-bottom: 20px; }
+        .contact-info p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; }
+        
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; color: var(--text-main); text-decoration: none; transition: all 0.3s; }
+        .social-links a:hover { background: var(--text-main); color: #fff; transform: translateY(-5px); }
+
+        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .input-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-main); padding-left: 5px; }
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%; padding: 16px; border: 1px solid rgba(0,0,0,0.1); border-radius: 12px;
+            background: rgba(255,255,255,0.5); font-size: 1rem; outline: none; transition: all 0.3s; color: var(--text-main);
+            appearance: none; 
+        }
+        
+        .select-wrapper { position: relative; }
+        .select-wrapper::after {
+            content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+            pointer-events: none; color: var(--text-muted); font-size: 0.9rem;
+        }
+
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            background: #fff; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex; align-items: flex-start; gap: 12px; margin-top: 5px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); cursor: pointer;
+        }
+        .checkbox-group label { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; cursor: pointer; font-weight: 500; }
+
+        #form-message {
+            padding: 15px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; display: none; text-align: center;
+        }
+        #form-message.success { display: block; background: #d1fae5; color: #065f46; border: 1px solid #34d399; }
+        #form-message.error { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
+
+        footer { text-align: center; padding: 60px; color: var(--text-muted); font-weight: 500; }
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3.5rem; }
+            .resume-container, .contact-container, .input-row { grid-template-columns: 1fr; padding: 30px;}
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="shape shape-3"></div></div>
+    <div class="noise-overlay"></div><div class="grid-overlay"></div>
+
+    <nav>
+        <div class="logo">Portfo<span>lio.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Experience</a></li>
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero reveal">
+        <div class="hero-badge">Available for freelance work</div>
+        <h1>Creative Design<br> Meets <span>Strategy.</span></h1>
+        <p>I build immersive visual identities, stunning digital experiences, and powerful branding solutions that elevate businesses.</p>
+        <a href="#portfolio" class="btn">Explore My Work <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+    </section>
+
+    <section id="about">
+        <div class="section-header reveal">
+            <h2>Why Work With Me?</h2>
+            <p>I combine artistic vision with strategic thinking to deliver designs that don't just look good, but solve real business problems.</p>
+        </div>
+        <div class="about-grid reveal">
+            <div class="info-card glass-panel tilt-card"><i class="fa-solid fa-pen-nib"></i><h3>Pixel Perfect</h3><p>Obsessive attention to detail in typography, layout, and color theory to ensure flawless execution.</p></div>
+            <div class="info-card glass-panel tilt-card"><i class="fa-solid fa-lightbulb"></i><h3>Strategic Thinking</h3><p>Every design choice is rooted in user psychology and brand strategy for maximum impact.</p></div>
+            <div class="info-card glass-panel tilt-card"><i class="fa-solid fa-rocket"></i><h3>Fast Execution</h3><p>Agile workflow and clear communication to deliver top-tier designs well within your deadlines.</p></div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <div class="section-header reveal"><h2>Experience & Skills</h2><p>A track record of delivering high-quality design across multiple disciplines.</p></div>
+        <div class="resume-container">
+            <div class="experience-col reveal">
+                <div class="timeline">
+                    <div class="timeline-item"><div class="timeline-date">2021 - Present</div><h3 class="timeline-title">Senior Visual Designer</h3><div class="timeline-company">Creative Agency Studio X</div><p class="text-muted">Lead design for digital and print campaigns. Managed branding projects for Fortune 500 clients.</p></div>
+                    <div class="timeline-item"><div class="timeline-date">2018 - 2021</div><h3 class="timeline-title">UI/UX & Brand Designer</h3><div class="timeline-company">TechNova Solutions</div><p class="text-muted">Designed web applications, mobile interfaces, and established comprehensive design systems.</p></div>
+                </div>
+            </div>
+            <div class="skills-col reveal">
+                <h3 style="margin-bottom: 25px; font-size: 1.5rem;">Core Competencies</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag glass-panel"><i class="fa-brands fa-figma" style="color:#F24E1E;"></i> Figma</div>
+                    <div class="skill-tag glass-panel"><i class="fa-solid fa-bezier-curve" style="color:#FF9A00;"></i> Illustrator</div>
+                    <div class="skill-tag glass-panel"><i class="fa-solid fa-image" style="color:#31A8FF;"></i> Photoshop</div>
+                    <div class="skill-tag glass-panel"><i class="fa-solid fa-mobile-screen"></i> UI/UX Design</div>
+                    <div class="skill-tag glass-panel"><i class="fa-solid fa-copyright"></i> Brand Identity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="section-header reveal"><h2>Selected Works</h2><p>A collection of my recent projects ranging from digital products to brand identities.</p></div>
+        <div id="portfolio-container"></div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container glass-panel reveal">
+            <div class="contact-info">
+                <h3>Let's start a project.</h3>
+                <p>I'm currently available for freelance work. If you have a project that needs some creative magic, fill out the form and I'll get back to you within 24 hours.</p>
+                <div class="social-links">
+                    <a href="#" class="glass-panel"><i class="fa-brands fa-dribbble"></i></a>
+                    <a href="#" class="glass-panel"><i class="fa-brands fa-behance"></i></a>
+                    <a href="#" class="glass-panel"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <form class="contact-form" id="sheet-form">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label for="clientType">I represent a(n)</label>
+                        <div class="select-wrapper">
+                            <select id="clientType" name="clientType" required>
+                                <option value="" disabled selected>Select an option...</option>
+                                <option value="Individual">Individual</option>
+                                <option value="Shop/Retail">Shop / Retail</option>
+                                <option value="Organization">Organization / Agency</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Tell me about your goals, timeline, and vision..."></textarea>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the Terms & Conditions and acknowledge that my details will be stored for contact purposes.</label>
+                </div>
+
+                <div id="form-message"></div>
+                <button type="submit" class="btn" id="submit-btn">Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Professional Designer. Designed with passion.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('data.json')
+                .then(response => {
+                    if (!response.ok) throw new Error("JSON Fetch Error");
+                    return response.json();
+                })
+                .then(data => {
+                    renderPortfolio(data);
+                    setTimeout(() => {
+                        initScrollReveal();
+                        init3DTilt();
+                    }, 100); 
+                })
+                .catch(error => {
+                    document.getElementById('portfolio-container').innerHTML = 
+                        `<div class="glass-panel" style="text-align:center; padding: 40px; color: #ef4444;"><h3>Unable to load projects</h3><p>Please run this file via a local web server to load the JSON file securely.</p></div>`;
+                });
+
+            function renderPortfolio(designs) {
+                const container = document.getElementById('portfolio-container');
+                const categories = [...new Set(designs.map(item => item.category))];
+                categories.forEach(category => {
+                    const title = document.createElement('h2'); title.className = 'category-title reveal'; title.innerText = category; container.appendChild(title);
+                    const grid = document.createElement('div'); grid.className = 'portfolio-grid';
+                    const items = designs.filter(item => item.category === category);
+                    items.forEach(item => {
+                        const card = document.createElement('a'); card.href = "#"; card.className = 'card glass-panel reveal tilt-card-subtle';
+                        card.innerHTML = `<div class="card-image-wrapper"><img src="${item.image}" alt="${item.title}" class="card-image" loading="lazy"></div><div class="card-content"><span class="card-category">${item.category}</span><h3 class="card-title">${item.title}</h3><p class="card-desc">${item.description}</p></div>`;
+                        grid.appendChild(card);
+                    });
+                    container.appendChild(grid);
+                });
+            }
+
+            function initScrollReveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }});
+                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+                reveals.forEach(reveal => observer.observe(reveal));
+            }
+
+            function init3DTilt() {
+                const cards = document.querySelectorAll('.tilt-card');
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2; const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -15; const rotateY = ((x - centerX) / centerX) * 15;
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+                        card.style.transition = `transform 0.5s ease`;
+                    });
+                    card.addEventListener('mouseenter', () => { card.style.transition = `transform 0.1s ease`; });
+                });
+            }
+
+            const form = document.getElementById('sheet-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const formMessage = document.getElementById('form-message');
+            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx311BuM20yog6wZWJQYTrKQ1IlOF01LyJxyl7BhFJC6U-zPrh28EBznd8KR0NvPvn9/exec';
+
+            form.addEventListener('submit', e => {
+                e.preventDefault(); 
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin" style="margin-left: 8px;"></i>';
+                formMessage.style.display = 'none';
+                formMessage.className = '';
+
+                const formData = new FormData(form);
+
+                fetch(scriptURL, { method: 'POST', body: formData })
+                    .then(response => {
+                        showFormMessage("Success! Your message has been sent to my Google Sheet.", "success");
+                        form.reset(); 
+                        resetButton();
+                    })
+                    .catch(error => {
+                        showFormMessage("Oops! Something went wrong. Please try again.", "error");
+                        resetButton();
+                    });
+            });
+
+            function showFormMessage(text, type) {
+                formMessage.innerText = text;
+                formMessage.className = type; 
+            }
+
+            function resetButton() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
